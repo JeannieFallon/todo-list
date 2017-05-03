@@ -1,13 +1,11 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Task;
-import org.launchcode.models.Todo;
+import org.launchcode.models.data.TaskDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jeannie on 5/2/17.
@@ -16,15 +14,20 @@ import java.util.List;
 @RequestMapping(value = "todo")
 public class TodoController {
 
+
+    @Autowired
+    private TaskDao taskDao;
+
     @RequestMapping(value = "")
     public String index(Model model) {
-        Task task = new Task("Algorithm practice",
-                "complete 3 HackerRank problems", 0);
 
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(task);
+        // object manually created to test database
+        Task task = new Task("Algorithm practice",
+                "complete 3 HackerRank problems");
+        taskDao.save(task);
+
         model.addAttribute("title","To-do List");
-        model.addAttribute("tasks", tasks);
+        model.addAttribute("tasks", taskDao.findAll());
         return "todo/index";
     }
 
