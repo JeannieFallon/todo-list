@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title th:text="${title}">Default Title</title>
 </head>
 <body>
+<div th:fragment="titles">
+    <h1>To-do List</h1>
+    <h3 th:text="${title}"></h3>
+</div>
+<nav th:fragment="nav">
+    <a href="/todo">Home</a>
+    <a href="/todo/about">About</a>
+    <a href="/todo/add">Add Task</a>
+</nav>
 
 </body>
 </html>

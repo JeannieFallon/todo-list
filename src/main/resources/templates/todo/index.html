@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
+<div th:replace="fragments :: titles"></div>
+<nav th:replace="fragments :: nav"></nav>
 <h1>Index: /todo</h1>
 <ul th:each="task : ${tasks}">
     <li th:text="${task.name}"></li>

@@ -26,7 +26,7 @@ public class TodoController {
                 "complete 3 HackerRank problems");
         taskDao.save(task);
 
-        model.addAttribute("title","To-do List");
+        model.addAttribute("title","Current Tasks");
         model.addAttribute("tasks", taskDao.findAll());
         return "todo/index";
     }
