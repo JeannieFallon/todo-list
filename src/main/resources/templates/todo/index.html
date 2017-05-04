@@ -5,9 +5,19 @@
 <body class="container">
 <div th:replace="fragments :: titles"></div>
 <nav th:replace="fragments :: nav"></nav>
-<h1>Index: /todo</h1>
-<ul th:each="task : ${tasks}">
-    <li th:text="${task.name}"></li>
-</ul>
+
+<table class="table">
+    <tr>
+
+        <th>Task</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.description}"></td>
+    </tr>
+</table>
+
+
 </body>
 </html>
