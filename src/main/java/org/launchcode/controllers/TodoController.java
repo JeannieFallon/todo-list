@@ -5,7 +5,9 @@ import org.launchcode.models.data.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by jeannie on 5/2/17.
@@ -20,26 +22,28 @@ public class TodoController {
 
     @RequestMapping(value = "")
     public String index(Model model) {
-
-        // object manually created to test database
-        Task task = new Task("Algorithm practice",
-                "complete 3 HackerRank problems");
-        taskDao.save(task);
-
         model.addAttribute("title","Current Tasks");
         model.addAttribute("tasks", taskDao.findAll());
         return "todo/index";
     }
 
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String add(Model model) {
+        model.addAttribute("title", "Add Task");
+        model.addAttribute("task", new Task());
+        return "todo/add";
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String add(@ModelAttribute Task task, Model model) {
+        taskDao.save(task);
+        return "redirect:";
+    }
+
+
     @RequestMapping(value = "about")
     public String about(Model model) {
         model.addAttribute("title", "About");
         return "todo/about";
-    }
-
-    @RequestMapping(value = "add")
-    public String add(Model model) {
-        model.addAttribute("title", "Add Task");
-        return "todo/add";
     }
 }

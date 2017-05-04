@@ -6,8 +6,16 @@
 
 <div th:replace="fragments :: titles"></div>
 <nav th:replace="fragments :: nav"></nav>
-
-<h1>Add: /todo/add</h1>
-
+<form method="post" th:object="${task}">
+    <div class="form-group">
+        <label th:for="name">Task</label>
+        <input class="form-control" th:field="*{name}" />
+    </div>
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="*{description}" />
+    </div>
+    <input type="submit" value="Add task" />
+</form>
 </body>
 </html>
