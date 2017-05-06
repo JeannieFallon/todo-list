@@ -7,13 +7,17 @@
 </head>
 <body>
 <div th:fragment="titles">
-    <h1>To-do List</h1>
-    <h3 th:text="${title}"></h3>
+    <h1 class="text-center" style="color:#404040">To-do List</h1>
+    <h1>
+    <small th:text="${title}"></small>
+    </h1>
 </div>
 <nav th:fragment="nav">
     <a href="/todo">Home</a> |
     <a href="/todo/add">Add Task</a> |
     <a href="/todo/about">About</a> |
+    <br />
+    <br />
 </nav>
 
 </body>

@@ -7,15 +7,15 @@
 <div th:replace="fragments :: titles"></div>
 <nav th:replace="fragments :: nav"></nav>
 <form method="post" th:object="${task}">
-    <div class="form-group">
+    <div class="form-group" style="max-width:250px;">
         <label th:for="name">Task</label>
         <input class="form-control" th:field="*{name}" />
     </div>
-    <div class="form-group">
+    <div class="form-group" style="max-width:250px;">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" />
+        <textarea class="form-control" th:field="*{description}"></textarea>
     </div>
-    <input type="submit" value="Add task" />
+    <input type="submit" class="btn btn-primary"  value="Add task" />
 </form>
 </body>
 </html>
