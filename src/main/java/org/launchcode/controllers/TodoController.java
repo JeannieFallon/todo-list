@@ -31,11 +31,13 @@ public class TodoController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(@RequestParam int[] taskIds) {
+    public String index(@RequestParam int[] taskIds, Model model) {
         for (int taskId : taskIds) {
             taskDao.delete(taskId);
         }
-        return "redirect:todo";
+        model.addAttribute("title","Current Tasks");
+        model.addAttribute("tasks",taskDao.findAll());
+        return "todo/index";
     }
 
 
