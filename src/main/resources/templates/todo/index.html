@@ -6,18 +6,32 @@
 <div th:replace="fragments :: titles"></div>
 <nav th:replace="fragments :: nav"></nav>
 
+<form method="post">
 <table class="table">
     <tr>
-
+        <th><i>Select</i></th>
         <th>Task</th>
         <th>Description</th>
     </tr>
     <tr th:each="task : ${tasks}">
+        <td>
+            <input type="checkbox" name="taskId" th:value="${task.id}" th:id="${task.id}" />
+        </td>
         <td th:text="${task.name}"></td>
         <td th:text="${task.description}"></td>
     </tr>
 </table>
-
+    <input type="submit" value="Task complete"/>
+</form>
 
 </body>
 </html>
+
+<!--
+
+<div th:each="cheese : ${cheeses}" class="checkbox">
+        <input type="checkbox" name="cheeseIds" th:value="${cheese.id}" th:id="${cheese.id}"/>
+        <label th:for="${cheese.id}" th:text="${cheese.name}"></label>
+        <br />
+    </div>
+-->
