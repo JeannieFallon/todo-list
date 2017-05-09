@@ -35,6 +35,7 @@ public class TodoController {
         for (int taskId : taskIds) {
             taskDao.delete(taskId);
         }
+
         model.addAttribute("title","Current Tasks");
         model.addAttribute("tasks",taskDao.findAll());
         return "todo/index";
