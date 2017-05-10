@@ -45,6 +45,7 @@ public class TodoController {
     public String index(@RequestParam String constant, Model model) {
         model.addAttribute("title","Current Tasks");
         model.addAttribute("tasks",taskDao.findAll());
+        model.addAttribute("error", "You must select a task to remove.");
         return "todo/index";
     }
 
