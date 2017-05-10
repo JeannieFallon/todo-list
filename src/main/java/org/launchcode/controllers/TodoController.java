@@ -30,12 +30,19 @@ public class TodoController {
     }
 
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(@RequestParam int[] taskIds, Model model) {
+    @RequestMapping(value = "", method = RequestMethod.POST, params={"taskIds", "constant"})
+    public String index(@RequestParam int[] taskIds, @RequestParam String constant, Model model) {
         for (int taskId : taskIds) {
             taskDao.delete(taskId);
         }
+        model.addAttribute("title","Current Tasks");
+        model.addAttribute("tasks",taskDao.findAll());
+        return "todo/index";
+    }
 
+
+    @RequestMapping(value = "", method = RequestMethod.POST, params={"constant"})
+    public String index(@RequestParam String constant, Model model) {
         model.addAttribute("title","Current Tasks");
         model.addAttribute("tasks",taskDao.findAll());
         return "todo/index";
