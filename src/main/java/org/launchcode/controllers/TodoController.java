@@ -40,7 +40,7 @@ public class TodoController {
         return "todo/index";
     }
 
-
+    //Overload index POST method to rerender template with error if no task selected
     @RequestMapping(value = "", method = RequestMethod.POST, params={"constant"})
     public String index(@RequestParam String constant, Model model) {
         model.addAttribute("title","Current Tasks");
@@ -48,7 +48,6 @@ public class TodoController {
         model.addAttribute("error", "You must select a task to remove.");
         return "todo/index";
     }
-
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
@@ -60,6 +59,8 @@ public class TodoController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(@ModelAttribute Task task, Model model) {
+        //TODO: rerender form with error if title or task is empty
+        //(not an elegant solution, but a band-aid until javax.validation is fixed
         taskDao.save(task);
         return "redirect:";
     }
