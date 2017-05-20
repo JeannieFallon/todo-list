@@ -5,10 +5,13 @@ import org.launchcode.models.data.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 /**
  * Created by jeannie on 5/2/17.
@@ -58,10 +61,15 @@ public class TodoController {
 
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(@ModelAttribute Task task, Model model) {
-        //TODO: rerender form with error if title or task is empty
-        //(not an elegant solution, but a band-aid until javax.validation is fixed
+    public String add(@ModelAttribute @Valid Task task, Errors errors, Model model) {
+
+        if(errors.hasErrors()) {
+            model.addAttribute("title","Add Task");
+            return "todo/add";
+        }
+
         taskDao.save(task);
+
         return "redirect:";
     }
 

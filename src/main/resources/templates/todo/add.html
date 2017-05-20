@@ -6,16 +6,20 @@
 
 <div th:replace="fragments :: titles"></div>
 <nav th:replace="fragments :: nav"></nav>
+
 <form method="post" th:object="${task}">
     <div class="form-group" style="max-width:250px;">
         <label th:for="name">Task</label>
         <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
     </div>
     <div class="form-group" style="max-width:250px;">
         <label th:for="description">Description</label>
         <textarea class="form-control" th:field="*{description}"></textarea>
+        <span th:errors="*{description}" class="error"></span>
     </div>
     <input type="submit" class="btn btn-primary"  value="Add task" />
 </form>
+
 </body>
 </html>
